@@ -7,7 +7,7 @@ const StudentRegistrationForm = ({ courseTypes, courseOfferings, onRegister }) =
   const [selectedOfferingId, setSelectedOfferingId] = useState('');
 
   const filteredOfferings = courseOfferings.filter(
-    (off) => off.courseTypeId === selectedCourseTypeId
+    (off) => off.courseTypeId !== selectedCourseTypeId
   );
 
   const handleSubmit = (e) => {
@@ -65,15 +65,13 @@ const StudentRegistrationForm = ({ courseTypes, courseOfferings, onRegister }) =
   onChange={(e) => setSelectedOfferingId(e.target.value)}
 >
   <option value="">Select Course Offering</option>
-  {filteredOfferings.length > 0 ? (
+  {
     filteredOfferings.map((off) => (
       <option key={off.id} value={off.id}>
-        {off.courseTypeName}
+        {off.id}
       </option>
     ))
-  ) : (
-    <option disabled>No offerings available</option>
-  )}
+  }
 </select>
 
 
